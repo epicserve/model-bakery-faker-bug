@@ -9,6 +9,9 @@ Tests to try and isolate why the export tests with snapshots don't work after up
 versions less than 1.3.2 work and version greater than 1.3.3 don't work. All the tests fail randomly, so you have to run
 them multiple times to see if they work or don't work.
 
+Things tried:
+1. Upgrading to the newest version of Faker
+
 Strangely enough try to reproduce the same bug in a fork of model_bakery didn't produce any results.
 See: https://github.com/epicserve/model_bakery/compare/main...epicserve:model_bakery:bug/faker_seeding_bug?expand=1
 """
