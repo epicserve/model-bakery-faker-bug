@@ -52,8 +52,8 @@ class TestFakerSeeding:
         )
 
         user = user_recipe.make()
-        assert user.username == "rli"
-        assert user.email == "pattersonbelinda@example.org"
+        assert user.username == "pattersonbelinda"
+        assert user.email == "stevenhenry@example.com"
 
     def test_faker_seeding_from_global(self):
         """
@@ -68,7 +68,7 @@ class TestFakerSeeding:
         )
 
         user = user_recipe.make()
-        assert user.username == "rli"
+        assert user.username == "austinhenry"
 
     def test_faker_seeding_form_local(self):
         """
@@ -84,8 +84,8 @@ class TestFakerSeeding:
         )
 
         user = user_recipe.make()
-        assert user.username == "rli"
-        assert user.email == "pattersonbelinda@example.org"
+        assert user.username == "pattersonbelinda"
+        assert user.email == "stevenhenry@example.com"
 
     def test_faker_with_fixture(self, faker, faker_seed):
         """
@@ -108,5 +108,5 @@ class TestFakerSeeding:
         )
 
         user = user_recipe.make()
-        assert user.username == "rli"
-        assert user.email == "pattersonbelinda@example.org"
+        assert user.username == "pattersonbelinda"
+        assert user.email == "stevenhenry@example.com"
