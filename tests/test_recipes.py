@@ -11,6 +11,8 @@ them multiple times to see if they work or don't work.
 
 Things tried:
 1. Upgrading to the newest version of Faker
+2. Upgrading to Django 4.1.1 fixed it, however upgrading from 3.2.9 to 3.2.15 didn't fix it
+3. Tried upgrading to model-bakery 1.7.0 and that didn't fix it
 
 Strangely enough try to reproduce the same bug in a fork of model_bakery didn't produce any results.
 See: https://github.com/epicserve/model_bakery/compare/main...epicserve:model_bakery:bug/faker_seeding_bug?expand=1
@@ -21,7 +23,7 @@ class TestFakerSeeding(TestCase):
     def test_faker_directly(self):
         """
         WORKS 100% of the time!!!!
-        for i in {1..20}; do dcrr web pytest --disable-warnings apps/accounts/tests/test_receipes.py::TestFakerSeeding::test_faker_directly; done
+        for i in {1..20}; do pytest tests/test_recipes.py::TestFakerSeeding::test_faker_directly; done
         """
         global_faker.seed_instance(10)
         username1 = global_faker.user_name()
@@ -31,7 +33,7 @@ class TestFakerSeeding(TestCase):
 
     def test_faker_seeding_from_global(self):
         """
-        for i in {1..20}; do pytest tests/test_receipes.py::TestFakerSeeding::test_faker_seeding_from_global; done
+        for i in {1..20}; do pytest tests/test_recipes.py::TestFakerSeeding::test_faker_seeding_from_global; done
         """
         global_faker.seed_instance(10)
 
@@ -42,11 +44,11 @@ class TestFakerSeeding(TestCase):
         )
 
         user = user_recipe.make()
-        assert user.username == "pattersonbelinda"
+        assert user.username == "rli"
 
     def test_faker_seeding_form_local(self):
         """
-        for i in {1..20}; do pytest tests/test_receipes.py::TestFakerSeeding::test_faker_seeding_form_local; done
+        for i in {1..20}; do pytest tests/test_recipes.py::TestFakerSeeding::test_faker_seeding_form_local; done
         """
         faker = Faker()
         faker.seed_instance(10)
@@ -58,5 +60,5 @@ class TestFakerSeeding(TestCase):
         )
 
         user = user_recipe.make()
-        assert user.username == "austinhenry"
-        assert user.email == "aolson@ford.com"
+        assert user.username == "rli"
+        assert user.email == "pattersonbelinda@example.org"
