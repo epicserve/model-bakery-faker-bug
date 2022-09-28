@@ -26,7 +26,6 @@ See: https://github.com/epicserve/model_bakery/compare/main...epicserve:model_ba
 
 @pytest.mark.django_db
 class TestFakerSeeding:
-
     @pytest.mark.parametrize("num", list(range(1, 11)))
     def test_faker_directly(self, num):
         """
@@ -53,7 +52,7 @@ class TestFakerSeeding:
         )
 
         user = user_recipe.make()
-        assert user.username == "rli"
+        assert user.username == "pattersonbelinda"
 
     @pytest.mark.parametrize("num", list(range(1, 11)))
     def test_faker_seeding_form_local(self, num):
@@ -70,5 +69,5 @@ class TestFakerSeeding:
         )
 
         user = user_recipe.make()
-        assert user.username == "rli"
-        assert user.email == "pattersonbelinda@example.org"
+        assert user.username == "pattersonbelinda"
+        assert user.email == "stevenhenry@example.com"
