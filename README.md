@@ -36,7 +36,7 @@ See: https://github.com/epicserve/model_bakery/compare/main...epicserve:model_ba
 
 2. Install required python dependencies.
     ```
-    pip install -r requirements.txt
+    make install
     ```
 
 ## Run tests
