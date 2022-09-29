@@ -87,6 +87,25 @@ class TestFakerSeeding:
         assert user.username == "pattersonbelinda"
         assert user.email == "stevenhenry@example.com"
 
+    def test_fake_wrapper_func(self):
+        """
+        for i in {1..20}; do pytest tests/test_recipes.py::TestFakerSeeding::test_fake_wrapper_func; done
+        """
+        _faker = Faker()
+        _faker.seed_instance(10)
+
+        def get_fake(func_name):
+            return getattr(_faker, func_name)()
+
+        user_recipe = Recipe(
+            "auth.User",
+            username=get_fake('user_name'),
+            email=get_fake('email'),
+        )
+        user = user_recipe.make()
+        assert user.username == "pattersonbelinda"
+        assert user.email == "stevenhenry@example.com"
+
     def test_faker_with_fixture(self, faker, faker_seed):
         """
         for i in {1..20}; do pytest tests/test_recipes.py::TestFakerSeeding::test_faker_with_fixture; done
