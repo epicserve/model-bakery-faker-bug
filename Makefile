@@ -9,15 +9,19 @@ SHELL := bash
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-.PHONY: test
-test: ## Run Python tests
-	@pytest
+.PHONY: format_code
+format_code: ## Format python code using black
+	@black .
+
+.PHONY: install
+install: ## Install requirements
+	@pip install -r requirements.txt
 
 .PHONY: requirements
 requirements: ## Compile new requirement files
 	@rm -rf ./requirements*.txt
 	@pip-compile --upgrade --generate-hashes --output-file requirements.txt requirements.in
 
-.PHONY: install
-install: ## Install requirements
-	@pip install -r requirements.txt
+.PHONY: test
+test: ## Run Python tests
+	@pytest

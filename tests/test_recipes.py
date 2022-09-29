@@ -137,10 +137,12 @@ class TestFakerSeeding:
 
         user_recipe = Recipe(
             "auth.User",
-            username=partial(get_fake, 'user_name'),
-            email=partial(get_fake, 'email'),
+            username=partial(get_fake, "user_name"),
+            email=partial(get_fake, "email"),
         )
-        user = user_recipe.make(username=partial(get_fake, 'user_name'), email=partial(get_fake, 'email'))
+        user = user_recipe.make(
+            username=partial(get_fake, "user_name"), email=partial(get_fake, "email")
+        )
         assert user.username == "pattersonbelinda"
         assert user.email == "stevenhenry@example.com"
 
