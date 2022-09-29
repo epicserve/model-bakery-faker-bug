@@ -24,7 +24,8 @@ Things tried:
 4. When using `@pytest.mark.parametrize("num", list(range(1, 11)))` on each test method, they either all pass or all fail
 5. Tried downgrading to pytest 6.2.5 from 7.1.3, and it didn't fix it
 6. Tried comparing Model Bakery [1.3.2 to 1.3.3](https://github.com/model-bakers/model_bakery/compare/1.3.2...1.3.3),
-   however, it's not clear why the changes would break anything.  
+   however, it's not clear why the changes would break anything.
+7. Tried resetting the global state before seeding (see the test: test_faker_instance_seeding_from_reset_global)
 
 Strangely enough trying to reproduce the same bug in a fork of model_bakery didn't produce any results. Probably because
 test is using Django 4.1.

@@ -3,6 +3,7 @@ from faker import Faker
 from model_bakery.recipe import Recipe
 
 global_faker = Faker()
+global_faker_state = global_faker.random.getstate()
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -27,6 +28,22 @@ class TestFakerSeeding:
         """
         for i in {1..20}; do pytest tests/test_recipes.py::TestFakerSeeding::test_faker_instance_seeding_from_global; done
         """
+        global_faker.seed_instance(10)
+
+        user_recipe = Recipe(
+            "auth.User",
+            username=global_faker.user_name,
+            email=global_faker.email,
+        )
+
+        user = user_recipe.make()
+        assert user.username == "pattersonbelinda"
+
+    def test_faker_instance_seeding_from_reset_global(self):
+        """
+        for i in {1..20}; do pytest tests/test_recipes.py::TestFakerSeeding::test_faker_instance_seeding_from_reset_global; done
+        """
+        global_faker.random.setstate(global_faker_state)
         global_faker.seed_instance(10)
 
         user_recipe = Recipe(
@@ -99,8 +116,8 @@ class TestFakerSeeding:
 
         user_recipe = Recipe(
             "auth.User",
-            username=get_fake('user_name'),
-            email=get_fake('email'),
+            username=get_fake("user_name"),
+            email=get_fake("email"),
         )
         user = user_recipe.make()
         assert user.username == "pattersonbelinda"
