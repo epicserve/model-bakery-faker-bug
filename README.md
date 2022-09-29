@@ -26,6 +26,7 @@ Things tried:
 6. Tried comparing Model Bakery [1.3.2 to 1.3.3](https://github.com/model-bakers/model_bakery/compare/1.3.2...1.3.3),
    however, it's not clear why the changes would break anything.
 7. Tried resetting the global state before seeding (see the test: test_faker_instance_seeding_from_reset_global)
+8. Tried adding a test using partial, but it randomly fails as well (see the test: test_recipe_with_partial_wrapper)
 
 Strangely enough trying to reproduce the same bug in a fork of model_bakery didn't produce any results. Probably because
 test is using Django 4.1.

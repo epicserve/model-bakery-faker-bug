@@ -1,4 +1,6 @@
-import pytest as pytest
+from functools import partial
+
+import pytest
 from faker import Faker
 from model_bakery.recipe import Recipe
 
@@ -120,6 +122,25 @@ class TestFakerSeeding:
             email=get_fake("email"),
         )
         user = user_recipe.make()
+        assert user.username == "pattersonbelinda"
+        assert user.email == "stevenhenry@example.com"
+
+    def test_recipe_with_partial_wrapper(self):
+        """
+        for i in {1..20}; do dcrr web pytest --disable-warnings tests/test_recipes.py::TestFakerSeeding::test_recipe_with_partial_wrapper; done
+        """
+        _faker = Faker()
+        _faker.seed_instance(10)
+
+        def get_fake(func_name):
+            return getattr(_faker, func_name)()
+
+        user_recipe = Recipe(
+            "auth.User",
+            username=partial(get_fake, 'user_name'),
+            email=partial(get_fake, 'email'),
+        )
+        user = user_recipe.make(username=partial(get_fake, 'user_name'), email=partial(get_fake, 'email'))
         assert user.username == "pattersonbelinda"
         assert user.email == "stevenhenry@example.com"
 
