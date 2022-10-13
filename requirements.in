@@ -1,7 +1,7 @@
 black
 django==3.2.9
 faker~=15.0.0
-model-bakery==1.3.3
+https://github.com/model-bakers/model_bakery/archive/refs/heads/issues/349/faker.zip
 pip-tools
 pytest
 pytest-django

@@ -1,5 +1,11 @@
 # Model Bakery and Faker Bug
 
+## Possibly Solved (2022-10-13)
+
+It seems like pinning model mommy to [this PR](https://github.com/model-bakers/model_bakery/pull/352) has fixed the issue.
+
+## Background
+
 This project is to replicate a strange bug that happens when you're using Faker with a Model Bakery Recipe and trying to
 seed the faker data to have consistent results in your assertions.
 
@@ -7,7 +13,7 @@ Tests in `tests/test_recipes.py` illustrate the bug. Versions less than 1.3.2 wo
 work. All the tests fail randomly, so you have to run them multiple times to see if they work or don't work
 (e.g. `for i in {1..20}; do pytest tests/test_recipes.py::TestFakerSeeding::test_faker_seeding_from_global; done`).
 
-Facts:
+**Facts:**
 1. Model Bakery versions 1.1.1 to 1.3.2 work with Django versions 3.2, 4.0, and 4.1.
 2. Model Bakery version 1.3.3 and greater don't work with Django versions 3.2 and 4.0
 3. Model Bakery version 1.3.3 and Django 4.1 work
@@ -17,7 +23,7 @@ Facts:
 6. Added a wrapper function that seems to work with all versions of model-bakery and Django. I'm not sure how this would
    if you have your recipes in baker_recipes.py files.
 
-Things tried:
+**Things tried:**
 1. Upgrading to the newest version of Faker
 2. Upgrading to Django 4.1.1 fixed it
 3. Tried upgrading to model-bakery 1.7.0 and that didn't fix it

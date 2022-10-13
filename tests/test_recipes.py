@@ -87,7 +87,7 @@ class TestFakerSeeding:
         )
 
         user = user_recipe.make()
-        assert user.username == "austinhenry"
+        assert user.username == "pattersonbelinda"
 
     def test_faker_seeding_form_local(self):
         """
@@ -127,7 +127,7 @@ class TestFakerSeeding:
 
     def test_recipe_with_partial_wrapper(self):
         """
-        for i in {1..20}; do dcrr web pytest --disable-warnings tests/test_recipes.py::TestFakerSeeding::test_recipe_with_partial_wrapper; done
+        for i in {1..20}; do pytest tests/test_recipes.py::TestFakerSeeding::test_recipe_with_partial_wrapper; done
         """
         _faker = Faker()
         _faker.seed_instance(10)
